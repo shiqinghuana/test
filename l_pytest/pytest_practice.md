@@ -13,3 +13,19 @@ pytest  -- 基于untitest的拓展，几乎能完美实现所有untitest的功�
             开源拓展性好，目前支持300多款插件
             对使用者要求更高
 后续更新~~~
+
+执行测试用例，，
+cmd --  pytest  XXX(路径或指定任务)  --后面加各种参数（--junitxml='文件路径’//--HTML='文件路径’
+                需安装pytest-html）
+pycharm --  pytest.main(['','','','','',']) 列表形式，值跟cmd一样，放入列表中‘
+            '--self-contained-html’ 保存css样式
+文件会自动创建
+运行后目录下会创建一堆文件，描述是缓存文件  pytest_cache md中有一句
+    **Do not** commit this to version control. 
+--目前来看，pytest比unittest好用太多，好好研究一下！
+    
+
+
+
+
+

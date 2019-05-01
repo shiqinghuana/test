@@ -26,4 +26,4 @@ class Test_Case(object):
 
 
 if __name__ == '__main__':
-    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/unit_practice','--junitxml=./reports.xml'])
+    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/unit_practice','--html=./report.html','--self-contained-html'])
