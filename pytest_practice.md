@@ -24,8 +24,50 @@ pycharm --  pytest.main(['','','','','',']) 列表形式，值跟cmd一样，放
     **Do not** commit this to version control. 
 --目前来看，pytest比unittest好用太多，好好研究一下！
     
+2019-5-2
+
+fixture 四个等级  session  module  class function 级别从大到小
+        分别表示作用域，整个测试，某个模块（.py） 某个类，某个函数      
+        举例 ： 
+        @fixture(scorp = 'class')
+        def A（）
+            return XX
+            pass
+        作用于某个类，需要用到的测试类把A 当做参数加入 ~~~好像不太方便
+~~ 带参数的fixture\
+几中方法，举个例子
+一：
+data = [{'a':"5"}]   需要传的参数
+
+@pytest.fixture(scope='class')
+def haha(request):  加入request
+    print('开始测试') 
+    #a = '5'
+    a = request.param['a']   request.param【键】 获取参数中的值
+    yield a   返回值
+    print('测试结束')
 
 
 
+class Test_Case(object):
+    @pytest.mark.parametrize('haha', data, indirect=True)  三个参数’函数‘，数据，indirect=true
+    def test_case(self,haha):
+       # print(self.a,)
+        #time.sleep(1)
+        assert haha =='5','不是5'
+其他正常写
+需要注意的是，，该装饰作用域取决于scope 只需实现一次，需先声明
+此方法只能返回单个值，所以尽量让参数在fixture中使用，返回一个实例
+如果要用fixture的函数，及值、、、？？有这个必要么
+分开写fixture,并叠加pytest.mark.parametrize
+这种方法会叠加测试用例数
+如 A['a','b']
+  B['11','22']
+  我们想测a--11 b-22两组数据，但实际中会生成 a-11 a-22 b-11 b-22四组（A*B)
+  
 
+
+测试数据分离
+
+conflist.py  --
 
