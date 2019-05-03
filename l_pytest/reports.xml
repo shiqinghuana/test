@@ -1,32 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><testsuite errors="2" failures="1" name="pytest" skipped="0" tests="3" time="0.154"><testcase classname="test_case01.Test_Case" file="test_case01.py" line="19" name="test_case" time="0.003"><error message="test setup failure">request = &lt;SubRequest &apos;haha&apos; for &lt;Function test_case&gt;&gt;
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="7" name="pytest" skipped="0" tests="8" time="0.165"><testcase classname="test_case01.Test_Case" file="test_case01.py" line="20" name="test_case[1]" time="0.002"><failure message="AssertionError: 不是5
+assert &apos;1&apos; == &apos;5&apos;
+  - 1
+  + 5">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045AF4F0&gt;
+haha = &apos;1&apos;
 
-    @pytest.fixture(scope=&apos;class&apos;)
-    def haha(request):
-        print(&apos;开始测试&apos;)
-        #a = &apos;5&apos;
-&gt;       a = request.param[&apos;a&apos;]
-E       AttributeError: &apos;SubRequest&apos; object has no attribute &apos;param&apos;
+    def test_case(self,haha):
+    
+           # print(self.a,)
+           # time.sleep(1)
+&gt;           assert haha ==&apos;5&apos;,&apos;不是5&apos;
+E           AssertionError: 不是5
+E           assert &apos;1&apos; == &apos;5&apos;
+E             - 1
+E             + 5
 
-test_case01.py:11: AttributeError</error><system-out>开始测试
-</system-out></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="25" name="test_case2" time="0.000"><error message="test setup failure">request = &lt;SubRequest &apos;haha&apos; for &lt;Function test_case&gt;&gt;
+test_case01.py:25: AssertionError</failure><system-out>开始测试
+True
+</system-out></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="28" name="test_case2[1]" time="0.001"><failure message="AssertionError: 不是2
+assert &apos;1&apos; == &apos;2&apos;
+  - 1
+  + 2">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045B6490&gt;
+haha = &apos;1&apos;
 
-    @pytest.fixture(scope=&apos;class&apos;)
-    def haha(request):
-        print(&apos;开始测试&apos;)
-        #a = &apos;5&apos;
-&gt;       a = request.param[&apos;a&apos;]
-E       AttributeError: &apos;SubRequest&apos; object has no attribute &apos;param&apos;
+    def test_case2(self,haha):
+    
+&gt;           assert haha==&apos;2&apos;,&apos;不是2&apos;
+E           AssertionError: 不是2
+E           assert &apos;1&apos; == &apos;2&apos;
+E             - 1
+E             + 2
 
-test_case01.py:11: AttributeError</error></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="28" name="test_case3" time="0.001"><failure message="AssertionError: 不是1
-assert &apos;2&apos; == &apos;1&apos;
+test_case01.py:31: AssertionError</failure></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="20" name="test_case[2]" time="0.002"><failure message="AssertionError: 不是5
+assert &apos;2&apos; == &apos;5&apos;
   - 2
-  + 1">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x04576BB0&gt;
+  + 5">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045B6550&gt;
+haha = &apos;2&apos;
 
-    def test_case3(self):
-&gt;       assert &apos;2&apos; == &apos;1&apos;, &apos;不是1&apos;
-E       AssertionError: 不是1
-E       assert &apos;2&apos; == &apos;1&apos;
-E         - 2
-E         + 1
+    def test_case(self,haha):
+    
+           # print(self.a,)
+           # time.sleep(1)
+&gt;           assert haha ==&apos;5&apos;,&apos;不是5&apos;
+E           AssertionError: 不是5
+E           assert &apos;2&apos; == &apos;5&apos;
+E             - 2
+E             + 5
 
-test_case01.py:30: AssertionError</failure></testcase></testsuite>
+test_case01.py:25: AssertionError</failure><system-out>测试结束
+开始测试
+False
+</system-out></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="28" name="test_case2[2]" time="0.001"></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="20" name="test_case[3]" time="0.002"><failure message="AssertionError: 不是5
+assert &apos;3&apos; == &apos;5&apos;
+  - 3
+  + 5">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045B6BD0&gt;
+haha = &apos;3&apos;
+
+    def test_case(self,haha):
+    
+           # print(self.a,)
+           # time.sleep(1)
+&gt;           assert haha ==&apos;5&apos;,&apos;不是5&apos;
+E           AssertionError: 不是5
+E           assert &apos;3&apos; == &apos;5&apos;
+E             - 3
+E             + 5
+
+test_case01.py:25: AssertionError</failure><system-out>测试结束
+开始测试
+False
+</system-out></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="28" name="test_case2[3]" time="0.001"><failure message="AssertionError: 不是2
+assert &apos;3&apos; == &apos;2&apos;
+  - 3
+  + 2">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045B6E50&gt;
+haha = &apos;3&apos;
+
+    def test_case2(self,haha):
+    
+&gt;           assert haha==&apos;2&apos;,&apos;不是2&apos;
+E           AssertionError: 不是2
+E           assert &apos;3&apos; == &apos;2&apos;
+E             - 3
+E             + 2
+
+test_case01.py:31: AssertionError</failure></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="20" name="test_case[4]" time="0.001"><failure message="AssertionError: 不是5
+assert &apos;4&apos; == &apos;5&apos;
+  - 4
+  + 5">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045B6630&gt;
+haha = &apos;4&apos;
+
+    def test_case(self,haha):
+    
+           # print(self.a,)
+           # time.sleep(1)
+&gt;           assert haha ==&apos;5&apos;,&apos;不是5&apos;
+E           AssertionError: 不是5
+E           assert &apos;4&apos; == &apos;5&apos;
+E             - 4
+E             + 5
+
+test_case01.py:25: AssertionError</failure><system-out>测试结束
+开始测试
+False
+</system-out></testcase><testcase classname="test_case01.Test_Case" file="test_case01.py" line="28" name="test_case2[4]" time="0.001"><failure message="AssertionError: 不是2
+assert &apos;4&apos; == &apos;2&apos;
+  - 4
+  + 2">self = &lt;package_test.l_pytest.test_case01.Test_Case object at 0x045A83F0&gt;
+haha = &apos;4&apos;
+
+    def test_case2(self,haha):
+    
+&gt;           assert haha==&apos;2&apos;,&apos;不是2&apos;
+E           AssertionError: 不是2
+E           assert &apos;4&apos; == &apos;2&apos;
+E             - 4
+E             + 2
+
+test_case01.py:31: AssertionError</failure><system-out>测试结束
+</system-out></testcase></testsuite>

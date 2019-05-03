@@ -56,7 +56,6 @@ class Test_Case(object):
         #time.sleep(1)
         assert haha =='5','不是5'
 其他正常写
-需要注意的是，，该装饰作用域取决于scope 只需实现一次，需先声明
 此方法只能返回单个值，所以尽量让参数在fixture中使用，返回一个实例
 如果要用fixture的函数，及值、、、？？有这个必要么
 分开写fixture,并叠加pytest.mark.parametrize
@@ -66,8 +65,30 @@ class Test_Case(object):
   我们想测a--11 b-22两组数据，但实际中会生成 a-11 a-22 b-11 b-22四组（A*B)
   
 
+2019-5-3
+pytets 参数化
+写法同上，只是把fixtrue函数放入conflist.py ，fixtrue加parma参数，值=需要放入的参数列表
 
-测试数据分离
+conflist.py
+fixtrue中不加参数 parma参数
+希望 A数据执行 case1  B数据执行case2
+用标记数据传入参数
+@pytest.mark.parametrize('haha', A, indirect=True)
+def case(fixtrue)
+    pass
+方法同上，
 
-conflist.py  --
-
+传入多数据
+data =[(a1,b1,c1),(a2,b2,c2),(a3,b3,c3)]
+@pytest.mark.parametrize('A,B,C',data )
+def case(fixtrue)
+    pass
+ 参数以列表形式传入，此方法跟上面叠加装饰器相似，测试用例数 =数据数之积
+ 
+ 跳过某个测试用例
+ @pytest.mark.skip 
+ @ytest.mark.skipif(条件跳过)
+ 
+ main 常用参数  -q  -v 
+ 
+ 基础知识，到这儿应该差不多了吧？？
