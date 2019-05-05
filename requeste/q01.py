@@ -1,10 +1,9 @@
 import requests
-import json
 import pytest
 from time import sleep
 import xlrd
 import sys
-from functools import wraps
+
 
 def excel(xlsname='./02.xls',
           index=0):
@@ -31,17 +30,35 @@ def excel(xlsname='./02.xls',
         list.append(data)
     return list
 
-@pytest.fixture(params=excel('./02.xls',0))
+#@pytest.fixture(scope='class')
+@pytest.fixture(scope='module',params=excel())
 def post(request):
     data = request.param
+
     base_url = 'http://v.juhe.cn/toutiao/index'
     rsp = requests.post(url=base_url, data=data)
+
     yield str(rsp.status_code)
+    #print(rsp.status_code)
 
 
-def test_case(post):
-    assert post == '200', '反问失败'
+
+'''
+def lala(request):
+    #print('开始')
+    f = open('01.txt','a')
+    f.write('kaishi\n')
+    yield request.param
+    f.write('jiesu\n')
+    f.close()
+   # print('结束')
+'''
+class Test_Case01():
+    #@pytest.mark.parametrize('data',excel())
+    def test_case(self,post):
+        assert post == '200', '反问失败'
+
 
 
 if __name__ == '__main__':
-    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/123test/q01.py', '-v'])
+    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/unit_practice/requeste/q01.py','-v'])

@@ -89,6 +89,28 @@ def case(fixtrue)
  @pytest.mark.skip 
  @ytest.mark.skipif(条件跳过)
  
- main 常用参数  -q  -v 
+ 2019-5-5
+ 关于参数化几个理解错误的地方
+ 两种方法实现
+ 1：@pytest.fixture(params =params )  fixture中自带parmas 关键字
+    def A(request):
+        return request.param   --用request.param 接收参数，返回测试用例中
+    --  
+    def test(A):
+        assert A == true  
+    //或者
+    def B（param）:
+        return param       
+    def test(A)
+        assert B(A) ==true
+2: 标记处理
+    @pytest.mark.parametrize('args',parma)  参数 - 值，如果是多个，要按顺序一一对应
+    def test()：
+        assert B(args)==true
+3：叠加装饰器--太麻烦，不琢磨了
+ 两种方法都各有用处吧！
+ 
+ 
+ main 常用参数  -q  -v  --junitxml=path  --html=path 
  
  基础知识，到这儿应该差不多了吧？？
