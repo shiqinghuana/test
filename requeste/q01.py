@@ -31,7 +31,7 @@ def excel(xlsname='./02.xls',
     return list
 
 #@pytest.fixture(scope='class')
-@pytest.fixture(scope='module',params=excel())
+@pytest.fixture(scope='function',params=excel())
 def post(request):
     data = request.param
 
@@ -53,12 +53,18 @@ def lala(request):
     f.close()
    # print('结束')
 '''
+data = [{'type':'top','key':'8dfc0c61b8a940f90e74e41dbaa9097d'},
+        ]
 class Test_Case01():
-    #@pytest.mark.parametrize('data',excel())
+    #@pytest.mark.parametrize('post',data,indirect=True)
     def test_case(self,post):
         assert post == '200', '反问失败'
+    def test_case1(self,post):
+        assert post == '201', '反问失败'
 
+    def test_case2(self, post):
+        assert post == '202', '反问失败'
 
 
 if __name__ == '__main__':
-    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/unit_practice/requeste/q01.py','-v'])
+    pytest.main(['C:/Users/sunni/PycharmProjects/untitled4/package_test/requeste/q01.py','-v'])

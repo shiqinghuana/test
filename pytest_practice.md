@@ -110,7 +110,21 @@ def case(fixtrue)
 3：叠加装饰器--太麻烦，不琢磨了
  两种方法都各有用处吧！
  
+ 2019-5-6
+ 两种标记传参区别
+ @pytest.mark.parametrize('args',parma)
+ 1:参数作用域为被标记函数
+ 2：可单独使用
+ 3：可传多个参数，传N个参数，该函数运行N次
  
+ 
+ @pytest.mark.parametrize('fixtrue',parma,indirect=True)
+  1:如果参数为多个，参数作用域为被标记函数
+  2：如果参数为单个，参数作用于取决于fixtrue  scope参数
+  3：配合fixtrue使用，使用request.parma 接收参数
+  
+  如果要多参数运行多函数，在fixtrue 中加parmas = data，所有已fixtrue为参数的函数都能共享
+  
  main 常用参数  -q  -v  --junitxml=path  --html=path 
  
  基础知识，到这儿应该差不多了吧？？
