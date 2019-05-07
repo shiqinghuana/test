@@ -5,6 +5,8 @@ import xlrd
 import sys
 
 
+#pytestmark = pytest.mark.skipif(True,reason="all tests still WIP")
+pexpect = pytest.importorskip("time")
 def excel(xlsname='./02.xls',
           index=0):
     # xlsname = request.param
@@ -59,7 +61,10 @@ class Test_Case01():
     #@pytest.mark.parametrize('post',data,indirect=True)
     def test_case(self,post):
         assert post == '200', '反问失败'
+
+   # @pytest.mark.skipif(True, reason='skip')
     def test_case1(self,post):
+
         assert post == '201', '反问失败'
 
     def test_case2(self, post):
@@ -67,4 +72,4 @@ class Test_Case01():
 
 
 if __name__ == '__main__':
-    pytest.main(['C:/Users/sunni/PycharmProjects/untitled4/package_test/requeste/q01.py','-v'])
+    pytest.main(['C:/Users/Administrator/PycharmProjects/untitled/unit_practice/requeste/q01.py','-v'])

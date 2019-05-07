@@ -86,8 +86,9 @@ def case(fixtrue)
  参数以列表形式传入，此方法跟上面叠加装饰器相似，测试用例数 =数据数之积
  
  跳过某个测试用例
- @pytest.mark.skip 
- @ytest.mark.skipif(条件跳过)
+ pytest.mark.skip 
+ ytest.mark.skipif(条件跳过)
+ 
  
  2019-5-5
  关于参数化几个理解错误的地方
@@ -128,3 +129,40 @@ def case(fixtrue)
  main 常用参数  -q  -v  --junitxml=path  --html=path 
  
  基础知识，到这儿应该差不多了吧？？
+ 
+ 
+ 2019-5-7
+ skipif 
+ 跳过某个测试用例
+ @pytest.mark.skip(reason="xxx')
+ @pytest.mark.skipif(条件,reason="xxx')
+ 跳过某个测试/类
+ @pytest.mark.skipif(条件,reason="xxx')
+ class A():
+    ...
+    
+  多模块间共享skipif
+  
+  test.py
+  m = pytest.mark.skipif(条件,reason="xxx')
+  
+  @m
+  def A():
+    ...
+    
+   test01.py
+   from  test import m
+   
+   @m
+   def B()
+    ...
+ 跳过某个测试模块
+ 
+pytestmark = pytest.mark.skip("all tests still WIP")
+pytestmark = pytest.mark.skipif(sys.platform == "win32", "tests for linux
+˓→ only".
+
+条件跳过模块中测试用例，用法与上面一致，只需要先声明
+pexpect = pytest.importorskip("pexpect")  --缺少导入包跳过,
+！！听说不能再继承类中用，没试过，尽量避免
+
