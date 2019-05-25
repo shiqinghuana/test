@@ -1,11 +1,12 @@
 import requests
 from lxml import etree
 import random
-from concurrent.futures import ThreadPoolExecutor,wait
+from concurrent.futures import ThreadPoolExecutor, wait
+import time
 
 
-def get_responce(url,header):
-    rsp = requests.get(url,headers=header)
+def get_responce(url, header):
+    rsp = requests.get(url, headers=header)
     rsp.encoding = "gbk"
     # print(html.text)
     html = etree.HTML(rsp.text)
@@ -16,19 +17,27 @@ def get_responce(url,header):
         # print(title ,href,)
         ur = url + href
         urls.append(ur)
+        print('获取url=={}'.format(ur))
 
     return urls
 
-def get_book(url,header):
-    body =requests.get(url,headers=header)
-    body.encoding="gbk"
-    html = etree.HTML(body.text)
+
+def get_book(url, header):
+    try:
+        body = requests.get(url, headers=header)
+        body.encoding = "gbk"
+        html = etree.HTML(body.text)
+    except requests.exceptions.SSLError:
+        pass
+
     title = html.xpath("//div[@class='content_read']/div/div[@class='bookname']/h1/text()")[0].strip('?').strip("'")
     book = html.xpath("//div[@class='content_read']/div/div[@id='content']/text()")
-    book = "".join(book).replace(u"\xa0\xa0\xa0\xa0","\r\n")
-    #print(book)
-    with open("./全职法师/'{}".format(title),'w',encoding='gbk') as f:
+    book = "".join(book).replace(u"\xa0\xa0\xa0\xa0", "\r\n")
+    # print(book)
+    with open("./quanzhifas/'{}".format(title + '.txt'), 'w', encoding='gbk') as f:
         f.write(book)
+        print(title, '下载完成')
+
 
 if __name__ == '__main__':
     url = "https://www.booktxt.net/0_595/"
@@ -41,9 +50,14 @@ if __name__ == '__main__':
         'Use-Agent': random.choices(UseAgent)[0],
         'Referer': url
     }
-    p = ThreadPoolExecutor(max_workers=300)
-    urls = get_responce(url,header)
+    start = time.time()
+    urls = get_responce(url, header)
+    futers = []
+    with ThreadPoolExecutor(max_workers=300) as p:
+        for url in urls:
+            tast = p.submit(get_book, url=url, header=header)
+            futers.append(tast)
 
-    futer = p.map(get_book,urls,header)
-    wait(futer)
-    print('下载完成')
+    wait(futers)
+    end = time.time()
+    print('下载完成,用时{}s'.format(end - start))
