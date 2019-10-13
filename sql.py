@@ -4,16 +4,16 @@
 
 # 1：连接数据库 (四个关键字参数host,user, passwd,db,port）
 
-import pymysql
-
-connert = pymysql.connect(host='localhost',
-                          user='lu',
-                          passwd='123456',
-                          db='sql01',
-                          port=3308)
-# 2 ：获取游标
-
-cursor = connert.cursor()
+# import pymysql
+#
+# connert = pymysql.connect(host='localhost',
+#                           user='lu',
+#                           passwd='123456',
+#                           db='sql01',
+#                           port=3308)
+# # 2 ：获取游标
+#
+# cursor = connert.cursor()
 
 #3:执行sql语句  ,executemany 执行多条(如批量增加）
 #单表查
@@ -55,13 +55,23 @@ cursor = connert.cursor()
 
 
 # 修改
-sql =  "UPDATE lianxi01 SET money = 52 WHERE id = 2"
-count = cursor.execute(sql)  #此处返回查询到的数量
-fetch = cursor.fetchall()  #fetchall 获取全部，此外还有fetchone 获取一条 fetchmany 获取多条
-print(count)
-print(fetch)
-
-connert.commit()
+# sql =  "UPDATE lianxi01 SET money = 52 WHERE id = 2"
+# count = cursor.execute(sql)  #此处返回查询到的数量
+# fetch = cursor.fetchall()  #fetchall 获取全部，此外还有fetchone 获取一条 fetchmany 获取多条
+# print(count)
+# print(fetch)
+#
+# connert.commit()
 
 
 ##至此，，数据库基础已结束
+
+import json
+import time
+dicts = {"info":[{"key":"col1","value":"13646"},{"key":"col2","value":"luyinbin"},{"key":"col3","value":"06116919"}],"code":"ty"}
+
+d = json.dumps(dicts)
+session=1559568932436&url=https://ksv-video-publish.cdn.bcebos.com/128cb1f32345aae70c3ac4d1ef02bac00e55e337.mp4?auth_key=1559603523-0-0-bba160e92d8c0bc3161ab99bb0c6319b&sendTime=2019-06-03%2022:56:34
+code=ty&t=1559573784301.0.18940062555458792
+
+print(time.time())

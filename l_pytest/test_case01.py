@@ -27,7 +27,6 @@ class Test_Case(object):
    # @pytest.mark.parametrize('haha', data, indirect=True)
    # @pytest.mark.skipif(haha != '2', reason='dont test evev 2')
     def test_case2(self,haha):
-
             assert haha=='2','不是2'
 
 
